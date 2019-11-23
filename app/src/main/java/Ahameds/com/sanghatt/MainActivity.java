@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageButton india;
+    private ImageButton india
     Dialog popup;
     DatabaseHelper myDB;
     private SensorManager sensorManager;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         }
         popup = new Dialog(this);//POPUP
         myDB = new DatabaseHelper(this);
-        //myDB.getWritableDatabase();
+      
         india = (ImageButton)findViewById(R.id.indiajar);
 
         india.setOnClickListener(new View.OnClickListener() {
