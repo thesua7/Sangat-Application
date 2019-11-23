@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         exit.setOnClickListener(new View.OnClickListener() { //EXIT BUTTON
             @Override
             public void onClick(View v) {
-                popup.dismiss();//CALLING DISMISS FOR CLOSING THE POPUP
+                popup.dismiss();//CALLING DISMISS FOR CLOSING THE POP UP
             }
         });
 
