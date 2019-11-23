@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageButton india;
+    private ImageButton india
     Dialog popup;
     DatabaseHelper myDB;
     private SensorManager sensorManager;
@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"this device has no gyroscope sensor",Toast.LENGTH_SHORT).show();
             finish();
         }
+
         popup = new Dialog(this);//POPUP OBJECT
         myDB = new DatabaseHelper(this);//DB OBJECT
-        //myDB.getWritableDatabase();
 
         india = (ImageButton)findViewById(R.id.indiajar);
 
