@@ -33,15 +33,16 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"this device has no gyroscope sensor",Toast.LENGTH_SHORT).show();
             finish();
         }
-        popup = new Dialog(this);//POPUP
-        myDB = new DatabaseHelper(this);
-      
+
+        popup = new Dialog(this);//POPUP OBJECT
+        myDB = new DatabaseHelper(this);//DB OBJECT
+
         india = (ImageButton)findViewById(R.id.indiajar);
 
-        india.setOnClickListener(new View.OnClickListener() {
+        india.setOnClickListener(new View.OnClickListener() { //INDIA JAR BUTTON
             @Override
             public void onClick(View v) {
-                Showpopup(v);
+                Showpopup(v);//CALLING POP UP
             }
         });
 
@@ -51,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-       public void Showpopup(View v){
+       public void Showpopup(View v){//DECLARING POP UP FUNCTION
            TextView exit;
            final TextView Show;
-           final EditText FName,Email,Phone;
+           final EditText FName,Email,Phone; //POP UP COMPONENTS
            Button AddUsers;
 
         popup.setContentView(R.layout.custompopup);
@@ -66,23 +67,23 @@ public class MainActivity extends AppCompatActivity {
 
         AddUsers = (Button) popup.findViewById(R.id.addbtn);
 
-        exit.setOnClickListener(new View.OnClickListener() {
+        exit.setOnClickListener(new View.OnClickListener() { //EXIT BUTTON
             @Override
             public void onClick(View v) {
-                popup.dismiss();
+                popup.dismiss();//CALLING DISMISS FOR CLOSING THE POP UP
             }
         });
 
-        popup.show();
-        AddUsers.setOnClickListener(new View.OnClickListener() {
+        popup.show(); //SHOWING POP UP
+        AddUsers.setOnClickListener(new View.OnClickListener() {//ADD PEOPLES BUTTON
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {//SAVING TO DB
                 Boolean flag =myDB.insertData(FName.getText().toString(),Email.getText().toString(),Phone.getText().toString(),"India");
                 if(flag==true){
                     Show.setText("Added");
                 }
                 else{
-                    Show.setText(FName.getText());//ok
+                    Show.setText(FName.getText());//FOR TESTING
                 }
             }
         });
