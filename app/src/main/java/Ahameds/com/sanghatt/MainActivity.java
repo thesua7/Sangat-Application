@@ -3,27 +3,36 @@ package Ahameds.com.sanghatt;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.hardware.Sensor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.hardware.SensorManager; //package for android hardware
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton india;
     Dialog popup;
     DatabaseHelper myDB;
-
-
+    private SensorManager sensorManager;
+    private Sensor gyroscope; //gyroscope object
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        sensorManager= (SensorManager) getSystemService(SENSOR_SERVICE);// getting all available sensors
+        gyroscope=sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE); // getting only gyroscope
+        if(gyroscope==null)
+        {
+            Toast.makeText(this,"this device has no gyroscope sensor",Toast.LENGTH_SHORT).show();
+            finish();
+        }
         popup = new Dialog(this);//POPUP
         myDB = new DatabaseHelper(this);
         //myDB.getWritableDatabase();
