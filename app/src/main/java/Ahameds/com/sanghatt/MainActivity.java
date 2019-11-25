@@ -15,8 +15,10 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageButton india
-    Dialog popup;
+    private ImageButton india;
+    private ImageButton roomOne;
+    Dialog popup,popupRoom;//ONE POPUP FOR JAR AND ONE FOR ROOM
+
     DatabaseHelper myDB;
     private SensorManager sensorManager;
     private Sensor gyroscope; //gyroscope object
@@ -34,10 +36,12 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
-        popup = new Dialog(this);//POPUP OBJECT
+        popup = new Dialog(this);//POPUP OBJECT JAR
         myDB = new DatabaseHelper(this);//DB OBJECT
+        popupRoom = new Dialog(this);//POPUP OBJECT ROOM
 
         india = (ImageButton)findViewById(R.id.indiajar);
+        roomOne = (ImageButton)findViewById(R.id.room1);
 
         india.setOnClickListener(new View.OnClickListener() { //INDIA JAR BUTTON
             @Override
@@ -46,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        roomOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowRoomPopup(v);// CALLING ROOM POP UP
+            }
+        });
 
 
 
@@ -58,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
            final EditText FName,Email,Phone; //POP UP COMPONENTS
            Button AddUsers;
 
-        popup.setContentView(R.layout.custompopup);
+        popup.setContentView(R.layout.custompopup);//SET IN THE LAYOUT WINDOW
         exit = (TextView) popup.findViewById(R.id.exitbtn);
         FName = (EditText) popup.findViewById(R.id.fullname);
         Email = (EditText) popup.findViewById(R.id.emailid);
@@ -87,6 +97,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+       }
+
+       public void ShowRoomPopup(View v){
+           TextView exit;
+
+        popupRoom.setContentView(R.layout.custompopupone);
+
+           exit = (TextView) popupRoom.findViewById(R.id.exitbtn);
+
+           exit.setOnClickListener(new View.OnClickListener() { //EXIT BUTTON
+               @Override
+               public void onClick(View v) {
+                   popupRoom.dismiss();//CALLING DISMISS FOR CLOSING THE POP UP
+               }
+           });
+
+           popupRoom.show();
+
 
        }
 
