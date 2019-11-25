@@ -2,7 +2,8 @@ package Ahameds.com.sanghatt;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
+import android.database.Cursor;//Cursor
+import android.database.sqlite.SQLiteDatabase;//SQLlite Lib
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
@@ -56,5 +57,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
          }
 
 
+    }
+
+
+    public Cursor getAllData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cur = db.rawQuery("select * from "+TABLE_NAME,null);
+        return cur;
     }
 }
